@@ -8,7 +8,7 @@ print("Welcome to CSD 205 Fiber Optics! Thank you for choosing us for your fiber
 company_name = input("\nWhat is the name of your company? ")
 
 # ask for fiber optic length
-len_fiber_optic = (input("How many feet of fiber optics do you need? "))
+len_fiber_optic = (input("How many feet of fiber optics nnnnnnnnnn do you need? "))
 # if input is not a number but a string, lets user know to input only a number
 while not len_fiber_optic.isdigit():
     print("\nOnly enter a number.")
