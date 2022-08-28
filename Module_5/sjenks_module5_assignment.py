@@ -2,9 +2,6 @@
 
 # Calculate the cost of installing fiber optic cable
 
-# importing decimal class
-from decimal import *
-
 print("Welcome to CSD 205 Fiber Optics! Thank you for choosing us for your fiber optic installation needs.")
 
 # Ask for company name
