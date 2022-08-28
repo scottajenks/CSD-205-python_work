@@ -36,6 +36,8 @@ for musical_name in broadway_musicals:
     print(musical_name)
 
 musical = input("\nWhich Broadway musical would you like to see? ")
+musical = musical.title()
+
 theatre = broadway_musicals[musical]
 
 print(f"\nEnjoy {musical} playing at the {theatre}.")
