@@ -1,6 +1,3 @@
-from unicodedata import name
-
-
 broadway_musicals = {
     "1776": "American Airlines Theatre",
     "Aladdin": "New Amsterdam Theatre",
@@ -36,10 +33,27 @@ for musical_name in broadway_musicals:
     print(musical_name)
 
 musical = input("\nWhich Broadway musical would you like to see? ")
-musical = musical.title()
+musical = musical.upper()
 
 theatre = broadway_musicals[musical]
 
-print(f"\nEnjoy {musical} playing at the {theatre}.")
+print(f'\nEnjoy "{musical}" playing at the {theatre}.')
 
-input("\n\tPress ENTER to exit")
+answer = input("\n\tWould you like to see another show? Y or N: ")
+answer = answer.title()
+
+while answer == "Y":
+    print(f"Tickets are now available for the following Broadway musicals: ")
+    for musical_name in broadway_musicals:
+        print(musical_name)
+
+    musical = input("\nWhich Broadway musical would you like to see? ")
+
+    theatre = broadway_musicals[musical]
+
+    print(f'\nEnjoy "{musical}" playing at the {theatre}.')
+
+    answer = input("\n\tWould you like to see another show? Y or N: ")
+    answer = answer.title()
+else:
+    input("\t\nPress Enter to exit.")
