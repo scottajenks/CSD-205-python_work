@@ -22,10 +22,10 @@ price = float(0.87)
 total_price = len_fiber_optic * price
 
 # format total_price to two decimal places
-format_total_price = "{:.2f}".format(total_price)
+#format_total_price = "{:.2f}".format(total_price)
 
 print(
-    f"\nThe price to install fiber optics is $0.87 per foot so the total price for {company_name.title().strip()}'s fiber optic installation is ${format_total_price}.")
+    f"\nThe price to install fiber optics is $0.87 per foot so the total price for {company_name.title().strip()}'s fiber optic installation is ${total_price:.2f}.")
 
 # Exit program
 input("\n\tPress ENTER to exit")
