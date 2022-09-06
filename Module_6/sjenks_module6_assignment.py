@@ -1,3 +1,5 @@
+# Scott Jenks - 8/29/2022 - Module 6 Assignment
+
 broadway_musicals = {"1776": "American Airlines Theatre",
                      "Aladdin": "New Amsterdam Theatre",
                      "Almost Famous": "Bernard B. Jacobs Theatre",
