@@ -3,6 +3,9 @@
 # Program using classes to represent a bank account
 
 
+from multiprocessing import Value
+
+
 class BankAccount:
     """A simple attempt to model a bank account"""
 
@@ -48,8 +51,9 @@ class BankAccount:
         else:
             print(
                 f"\nYou are withdrawing ${withdraw_amount:.2f} from account '{self.account_number}' so your new balance in the account is ${new_account_balance:.2f}.")
-            print("\n\tThank you for banking with Python Bank.")
-            input("\n\t\tPress Enter to exit.")
+            self.account_balance = new_account_balance
+#            print("\n\tThank you for banking with Python Bank.")
+#            input("\n\t\tPress Enter to exit.")
 
     def deposit(self):
         """Deposits funds into account"""
@@ -69,8 +73,8 @@ class BankAccount:
 
         print(
             f"\nYou are depositing ${deposit_amount:.2f} into account '{self.account_number}' so your new balance in the account is ${self.account_balance:.2f}.")
-        print("\n\tThank you for banking with Python Bank.")
-        input("\n\t\tPress Enter to exit.")
+#        print("\n\tThank you for banking with Python Bank.")
+#        input("\n\t\tPress Enter to exit.")
 
     def getBalance(self):
         """Returns balance of account"""
@@ -89,9 +93,9 @@ class BankAccount:
                 self.deposit()
             else:
                 self.withdrawl()
-        else:
-            print("\n\tThank you for banking with Python Bank.")
-            input("\n\t\tPress Enter to exit.")
+#        else:
+            #            print("\n\tThank you for banking with Python Bank.")
+            #            input("\n\t\tPress Enter to exit.")
 
 
 class CheckingAccount(BankAccount):
@@ -133,41 +137,174 @@ class SavingsAccount(BankAccount):
         print(f"Your savings account '{self.account_number}' has a balance of ${self.account_balance:.2f}. With the 2% interest you will receive ${interest:.2f} so your new balance will be ${new_balance:.2f}.")
 
 
-my_savings_account = SavingsAccount(123456, 200)
-my_savings_account.addInterest()
-print()
+# Bank account with $200
+def large_bank_account():
+    my_bank_account = input(
+        "\nWelcome to Python Bank. \nWould you like to make a deposit, withdraw or check balance? 'D' - 'W' - 'B': ")
+    my_bank_account = my_bank_account.title()
 
-my_savings_account = SavingsAccount(123456, 25)
-my_savings_account.addInterest()
-print()
+# User selects deposit
+    if my_bank_account == 'D':
+        select_account = input(
+            f"\nWould like to deposit into your checking or savings account? 'C' - 'S': ")
+        select_account = select_account.title()
+
+# User selects checking
+        if select_account == 'C':
+            my_checking_account = CheckingAccount('', 200)
+            my_checking_account.account_number = input(
+                "\nWhat is your account number? ")
+            my_checking_account.deposit()
+
+# User selects savings
+        else:
+            my_savings_account = SavingsAccount('', 200)
+            my_savings_account.account_number = input(
+                "\nWhat is your account number? ")
+            my_savings_account.deposit()
+            my_savings_account.addInterest()
+
+# User selects withdraw
+    elif my_bank_account == 'W':
+        select_account = input(
+            f"\nWould like to withdraw money from your checking or savings account? 'C' - 'S': ")
+        select_account = select_account.title()
+
+# User selects checking
+        if select_account == 'C':
+            my_checking_account = CheckingAccount('', 200)
+            my_checking_account.account_number = input(
+                "\nWhat is your account number? ")
+            my_checking_account.checkMinimumBalance()
+            my_checking_account.withdrawl()
+            my_checking_account.deductFees()
+
+# User selects savings
+        else:
+            my_savings_account = SavingsAccount('', 200)
+            my_savings_account.account_number = input(
+                "\nWhat is your account number? ")
+            my_savings_account.withdrawl()
+            my_savings_account.addInterest()
+
+# User selects balance
+    else:
+        select_account = input(
+            f"\nWould like the balance of your checking or savings account? 'C' - 'S': ")
+        select_account = select_account.title()
+
+# User selects checking
+        if select_account == 'C':
+            my_checking_account = CheckingAccount('', 200)
+            my_checking_account.account_number = input(
+                "\nWhat is your account number? ")
+            my_checking_account.getBalance()
+
+# User selects savings
+        else:
+            my_savings_account = SavingsAccount('', 200)
+            my_savings_account.account_number = input(
+                "\nWhat is your account number? ")
+            my_savings_account.getBalance()
+
+# Bank account with $25
 
 
-my_checking_account = CheckingAccount(123456, 200)
-my_checking_account.deductFees()
-print()
-my_checking_account.checkMinimumBalance()
-print()
+def small_bank_account():
+    my_bank_account = input(
+        "\nWelcome to Python Bank. \nWould you like to make a deposit, withdraw or check balance? 'D' - 'W' - 'B': ")
+    my_bank_account = my_bank_account.title()
 
-my_checking_account = CheckingAccount(123456, 25)
-my_checking_account.deductFees()
-print()
-my_checking_account.checkMinimumBalance()
-print()
+# User selects deposit
+    if my_bank_account == 'D':
+        select_account = input(
+            f"\nWould like to deposit into your checking or savings account? 'C' - 'S': ")
+        select_account = select_account.title()
 
-input("\n\t\tPress Enter to exit.")
+# User selects checking
+        if select_account == 'C':
+            my_checking_account = CheckingAccount('', 25)
+            my_checking_account.account_number = input(
+                "\nWhat is your account number? ")
+            my_checking_account.deposit()
+
+# User selects savings
+        else:
+            my_savings_account = SavingsAccount('', 25)
+            my_savings_account.account_number = input(
+                "\nWhat is your account number? ")
+            my_savings_account.deposit()
+            my_savings_account.addInterest()
+
+# User selects withdraw
+    elif my_bank_account == 'W':
+        select_account = input(
+            f"\nWould like to withdraw money from your checking or savings account? 'C' - 'S': ")
+        select_account = select_account.title()
+
+# User selects checking
+        if select_account == 'C':
+            my_checking_account = CheckingAccount('', 25)
+            my_checking_account.account_number = input(
+                "\nWhat is your account number? ")
+            my_checking_account.checkMinimumBalance()
+            my_checking_account.withdrawl()
+            my_checking_account.deductFees()
+
+# User slects savings
+        else:
+            my_savings_account = SavingsAccount('', 25)
+            my_savings_account.account_number = input(
+                "\nWhat is your account number? ")
+            my_savings_account.withdrawl()
+            my_savings_account.addInterest()
+
+# User selects balance
+    else:
+        select_account = input(
+            f"\nWould like the balance of your checking or savings account? 'C' - 'S': ")
+        select_account = select_account.title()
+
+# User selects checking
+        if select_account == 'C':
+            my_checking_account = CheckingAccount('', 25)
+            my_checking_account.account_number = input(
+                "\nWhat is your account number? ")
+            my_checking_account.getBalance()
+
+# User selects savings
+        else:
+            my_savings_account = SavingsAccount('', 25)
+            my_savings_account.account_number = input(
+                "\nWhat is your account number? ")
+            my_savings_account.getBalance()
+
+# Ask user to pick small or large bank account
 
 
-'''my_bank_account = BankAccount(123456, 200)
+def account_option():
+    option = input(
+        "\nWould you like to play with a large or small bank account? 'L' - 'S': ")
+    option = option.title()
+    if option == 'L':
+        large_bank_account()
+    else:
+        small_bank_account()
 
-welcome = input(
-    "Welcome to Python Bank. \nWould you like to make a deposit, withdrawl or check balance? 'D' - 'W' - 'B': ")
-welcome = welcome.title()
 
-if welcome == 'D':
-    my_bank_account.deposit()
-elif welcome == 'W':
-    my_bank_account.withdrawl()
-elif welcome == 'B':
-    my_bank_account.getBalance()
-else:
-    print("\n\tThank you for banking with Python Bank.")'''
+# Ask user if they want to do another transaction
+def another_transaction():
+    another_transaction = input(
+        "\n\t\tWould you like to do another transaction? 'Y' - 'N': ")
+    another_transaction = another_transaction.title()
+
+    if another_transaction == 'Y':
+        account_option()
+    else:
+        print("\n\tThank you for banking with Python Bank.")
+        input("\n\t\tPress Enter to quit.")
+
+
+# Start program
+account_option()
+another_transaction()
