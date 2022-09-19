@@ -2,10 +2,6 @@
 
 # Program using classes to represent a bank account
 
-
-from multiprocessing import Value
-
-
 class BankAccount:
     """A simple attempt to model a bank account"""
 
