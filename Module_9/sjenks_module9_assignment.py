@@ -1,4 +1,4 @@
-# Scott Jenks - 9/18/2022 - Module 9 Assignment
+# Scott Jenks - 9/19/2022 - Module 9 Assignment
 
 # Program using classes to represent a bank account
 
@@ -14,7 +14,7 @@ class BankAccount:
         """Withdraw funds from account"""
         withdraw_amount = input("\nHow much would you like to withdrawl? ")
 
-        # Make sure input is a numerical value
+# Make sure input is a numerical value
         try:
             withdraw_amount = float(withdraw_amount)
         except ValueError:
@@ -22,17 +22,17 @@ class BankAccount:
             withdraw_amount = input("\nHow much would you like to withdrawl? ")
             withdraw_amount = float(withdraw_amount)
 
-        # Calculate new account balance
+# Calculate new account balance
         new_account_balance = self.account_balance - withdraw_amount
 
-        # Check to see if withdrawl takes account negative
+# Check to see if withdrawl takes account negative
         while new_account_balance < 0:
             print(
                 f"\nYou cannot withdraw ${withdraw_amount:.2f} from account '{self.account_number}' as you only have ${self.account_balance:.2f} and it will take your account negative.")
             """Withdraw funds from account"""
             withdraw_amount = input("\nHow much would you like to withdraw? ")
 
-            # Make sure input is a numerical value
+# Make sure input is a numerical value
             try:
                 withdraw_amount = float(withdraw_amount)
             except ValueError:
@@ -41,21 +41,19 @@ class BankAccount:
                     "\nHow much would you like to withdrawl? ")
                 withdraw_amount = float(withdraw_amount)
 
-            # Calculate new account balance
+# Calculate new account balance
             new_account_balance = self.account_balance - withdraw_amount
 
         else:
             print(
                 f"\nYou are withdrawing ${withdraw_amount:.2f} from account '{self.account_number}' so your new balance in the account is ${new_account_balance:.2f}.")
             self.account_balance = new_account_balance
-#            print("\n\tThank you for banking with Python Bank.")
-#            input("\n\t\tPress Enter to exit.")
 
     def deposit(self):
         """Deposits funds into account"""
         deposit_amount = input("\nHow much would you like to deposit? ")
 
-        # Make sure input is a numerical value
+# Make sure input is a numerical value
         try:
             deposit_amount = float(deposit_amount)
         except ValueError:
@@ -63,25 +61,23 @@ class BankAccount:
             deposit_amount = input("\nHow much would you like to deposit? ")
             deposit_amount = float(deposit_amount)
 
-        # Calculate new account balance
+# Calculate new account balance
         new_account_balance = self.account_balance + deposit_amount
         self.account_balance = new_account_balance
 
         print(
             f"\nYou are depositing ${deposit_amount:.2f} into account '{self.account_number}' so your new balance in the account is ${self.account_balance:.2f}.")
-#        print("\n\tThank you for banking with Python Bank.")
-#        input("\n\t\tPress Enter to exit.")
 
     def getBalance(self):
         """Returns balance of account"""
         print(f"\nYou current balance is ${self.account_balance:.2f}.")
 
-        # Ask if customer wants to deposit or withdraw money
+# Ask if customer wants to deposit or withdraw money
         deposit_withdraw = input(
             "\nWould you like to deposit or withdraw money? 'Y' - 'N': ")
         deposit_withdraw = deposit_withdraw.title()
 
-        # Ask weather they are depositing or withdrawing
+# Ask weather they are depositing or withdrawing
         if deposit_withdraw == 'Y':
             answer = input("\nDeposit or Withdrawl? 'D' - 'W': ")
             answer = answer.title()
@@ -89,9 +85,6 @@ class BankAccount:
                 self.deposit()
             else:
                 self.withdrawl()
-#        else:
-            #            print("\n\tThank you for banking with Python Bank.")
-            #            input("\n\t\tPress Enter to exit.")
 
 
 class CheckingAccount(BankAccount):
@@ -290,17 +283,21 @@ def account_option():
 
 # Ask user if they want to do another transaction
 def another_transaction():
-    another_transaction = input(
-        "\n\t\tWould you like to do another transaction? 'Y' - 'N': ")
-    another_transaction = another_transaction.title()
-
-    if another_transaction == 'Y':
-        account_option()
-    else:
-        print("\n\tThank you for banking with Python Bank.")
-        input("\n\t\tPress Enter to quit.")
+    while True:
+        transaction = input(
+            "\n\t\tWould you like to do another transaction? 'Y' - 'N': ")
+        transaction = transaction.title()
+        if transaction == 'Y':
+            account_option()
+        else:
+            break
 
 
 # Start program
 account_option()
+
+# Repeat program is user wants too
 another_transaction()
+
+print("\n\tThank you for banking with Python Bank.")
+input("\n\t\tPress Enter to quit.")
