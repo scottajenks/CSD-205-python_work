@@ -1,0 +1,85 @@
+    #8-1. Message
+def display_message():
+    '''Display a message'''
+    print("Functions are a block of code that are used so you can use the same code over and over again in your program without having to retype it all the time.")
+
+display_message()
+
+    #8-2. Favorite Book
+def favorite_book(title):
+    '''Display a message'''
+    print(f"One of my favorite books is {title.title()}.")
+
+favorite_book("alice in wonderland")
+
+    #8-3. T-Shirt
+def make_shirt(size, message):
+    print(f"You ordered a {size} shirt with the message '{message}' printed on it.")
+    
+make_shirt("XL", "Lets Party!")
+make_shirt(size = "S", message = "Hang in There!")
+make_shirt(message = "Hang in There!", size = "S")
+
+    #8-4. Large Shirts
+def make_shirt(size = "L", message = "I love Python!"):
+    print(f"You ordered a {size} shirt with the message '{message}' printed on it.")
+    
+make_shirt()
+make_shirt("M")
+make_shirt(message = "Hang in There!", size = "S")
+
+    #8-5. Cities
+def describe_city(city, country = "USA"):
+    print(f"{city} is in {country}.")
+
+describe_city("Houston")
+describe_city("Paris", "France")
+describe_city(city = "Hong Kong", country = "China")
+
+    #8-6. City Names
+def city_country(city, country):
+    '''Return a city and country, formatted'''
+    formatted_name = f'"{city}, {country}"'
+    return formatted_name.title()
+    
+name1 = city_country("Orlando", "United states of america")
+name2 = city_country("madrid", "spain")
+name3 = city_country(country = "Brazil", city = "recife")
+print(name1)
+print(name2)
+print(name3)
+
+    #8-7. Album
+def make_album(artist_name, album_title, tracks=None):
+    '''Return a dictionary of information about an album'''
+    album_info = {"Artist Name" : artist_name, "Album Title" : album_title}
+    if tracks:
+        album_info["Track Count"] = tracks
+    return album_info
+
+album1 = make_album("Scott Jenks", "Somethings Goes Pop")
+album2 = make_album("Luiz Soares", "Classical All The Way", "18")
+
+print(album1)
+print(album2)
+print(make_album("Brandi Watterson", "Nothing But Country", "13"))
+
+    #8-8. User Albums
+def make_album(artist_name, album_title):
+    '''Return a dictionary of information about an album'''
+    album_info = {"Artist Name" : artist_name, "Album Title" : album_title}
+    return album_info
+
+while True:
+    print("Who is your favorite recording artist and favorite album of theirs?")
+    print("\tEnter 'q' to quit at anytime.")
+    
+    art_name = input("Artist Name: ")
+    if art_name == 'q':
+        break
+    album_name = input("Album Title: ")
+    if album_name == 'q':
+        break
+    
+    names = make_album(album_name, art_name)
+    print(f"I cannot wait to listen to {album_name} by {art_name}!")
