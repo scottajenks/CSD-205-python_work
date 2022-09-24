@@ -20,7 +20,7 @@ filename = input(
 filename = f'{filename}.txt'
 
 # See if file exists
-if os.path.isfile(filename) == False:
+if os.path.isfile(filename) == True:
     overwrite_doc = input(
         "\nThe file already exists. Would you like to overwrite it? 'Y' - 'N': ")
     overwrite_doc = overwrite_doc.title()
